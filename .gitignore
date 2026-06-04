@@ -6,3 +6,4 @@ serve-out.log
 serve-err.log
 .env
 .env.local
+.idea/

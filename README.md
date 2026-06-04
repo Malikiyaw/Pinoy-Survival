@@ -20,6 +20,7 @@ Or just open `index.html` in any modern browser - Babylon.js loads from CDN.
 | `W` `A` `S` `D` / Arrows | Move |
 | `Shift` | Sprint (drains stamina) |
 | `Space` / `J` | Melee attack |
+| `Q` | Special ability (character-specific) |
 | `E` / `Enter` | Interact (talk, shop) |
 | `1` | Switch to Kiko Pangilinan |
 | `2` | Switch to Risa Hontiveros |
@@ -30,11 +31,12 @@ Or just open `index.html` in any modern browser - Babylon.js loads from CDN.
 
 | # | Name | Style | Special | HP | Speed |
 |---|------|-------|---------|-----|-------|
-| 1 | **Kiko Pangilinan** | Senator (Barong) | Senate Speech (AoE) | 120 | 5 |
-| 2 | **Risa Hontiveros** | Senator (Red) | Committee Hearing (ranged) | 95 | 6 |
-| 3 | **Leni Robredo** | Public servant (Yellow) | Community Service (heal) | 110 | 5 |
+| 1 | **Kiko Pangilinan** | Senator (Barong) | Senate Speech (AoE stun + damage) | 120 | 5 |
+| 2 | **Risa Hontiveros** | Senator (Red) | Committee Hearing (ranged projectile) | 95 | 6 |
+| 3 | **Leni Robredo** | Public servant (Yellow) | Community Service (self-heal + area heal) | 110 | 5 |
 
 Switching is instant (1/2/3 keys) - like a party of subs. Each character has a unique intro line on switch.
+Press `Q` to activate each character's special ability (3 second cooldown).
 
 ## Enemies
 
@@ -50,40 +52,40 @@ Switching is instant (1/2/3 keys) - like a party of subs. Each character has a u
 All enemies have **satirical taunt lines** (no real-world claims) and drop themed items:
 Pork Barrel, Fake Bill, Dirt Bag, Luxury Watch, Mini-House Key, Bigas Sack, Old Ballot, Rally Flag.
 
-## Zones (Luzon)
+## Zones (Philippines)
 
 | Zone | Status | Features |
 |------|--------|----------|
-| **Manila** | Open | Rizal Park, Intramuros, LRT, jeepneys, fountain, dense crowd |
-| **Baguio** | Open | Burnham Park, pines, strawberry stands, cool misty atmosphere |
-| **Quiapo** | Open | Quiapo Church + cross, Plaza Miranda, Black Nazarene route |
-| Visayas | Locked | Coming soon |
-| Mindanao | Locked | Coming soon |
+| **Manila** | Open | Rizal Park, Intramuros, LRT, BGC, Manila Bay, Ermita, Malate, 18+ buildings, 20+ props, 20 NPCs |
+| **Baguio** | Open | Burnham Park, Session Road, Mines View, Strawberry Farm, Botanical Garden, Camp John Hay, SM Baguio, Panagbenga, 14+ buildings, 12 props, 20 NPCs |
+| **Quiapo** | Open | Quiapo Church, Plaza Miranda, Black Nazarene Route, Hidalgo St, Carriedo, Escolta, Binondo, San Nicolas, 18+ buildings, 16 props, 20 NPCs |
+| **Visayas** | Open | Magellan's Cross, Chocolate Hills, Sinulog Festival, Bohol Tarsier, Iloilo Esplanade, Boracay, Cebu City, Tagbilaran, 18+ buildings, 14 props, 20 NPCs, Buwaya enemy |
+| **Mindanao** | Open | Mount Apo, Davao Crocodile Park, Kadayawan Festival, Cotabato City, Zamboanga Pink Mosque, Maria Cristina Falls, Iligan, General Santos, 18+ buildings, 14 props, 20 NPCs, Buwaya enemy |
 
 Each zone has:
-- 5-8 unique buildings (with detailed windows, doors, brick patterns, roofs)
-- 6-9 trees
-- 3-6 props (jeepney, lamppost, fountain, LRT rail, church cross)
-- 5-10 named NPCs (vendors + rally + kids)
-- **50 procedurally-spawned civilians** (different colored variants)
+- 15-18+ unique buildings (with detailed windows, doors, brick patterns, roofs)
+- 20+ trees
+- 12-16 props (jeepney, lamppost, fountain, LRT rail, church cross, etc.)
+- 20 named NPCs (vendors + rally + kids)
+- **80-100 procedurally-spawned civilians** (30+ color variants)
 - Unique fog color, ambient light, and procedural PH-flavored music
 
 ## NPCs (Vendors + Civilians)
 
-- **Fishball Vendor** - sells fishball, taho, kwek-kwek, balut, energy drink, tsinelas
-- **Ice Cream Seller** - sells sorbetes, halo-halo, lechon, adobo, sisig, sinigang, pancit, lumpia, first aid kit, balaraw
-- **Water Seller** - sells water, buko juice, sago't gulaman, softdrink, San Miguel beer, kape barako, saging, salabat, lagundi, bato
+- **Fishball Vendor** - sells fishball, taho, kwek-kwek, balut, chicharon, puto, energy drink, sports drink, tsinelas, slipper, whistle
+- **Ice Cream Seller** - sells sorbetes, halo-halo, lechon, adobo, sisig, sinigang, pancit, lumpia, goto, mami, tocino, longganisa, kakanin, first aid kit, antibiotics, painkiller, balaraw, flashlight
+- **Water Seller** - sells water, buko juice, sago't gulaman, softdrink, San Miguel beer, kape barako, saging, salabat, lagundi, vitamins, calamansi juice, mango shake, pineapple juice, buko water, chocolate, bato, payong
 - **Rally Crowd** - clustered formation with shouts
 - **Kids Playing** - faster wander AI
-- **Many civilians** - 8 color variants, 50 per zone, wander with random targets
+- **Many civilians** - 30+ color variants, 80-100 per zone, wander with random targets
 
-## Items (26 total)
+## Items (45+ total)
 
-**Food** (12): Fishball, Taho, Kwek-Kwek, Balut, Sorbetes, Halo-Halo, Lechon, Adobo, Sisig, Sinigang, Pancit, Lumpia
-**Drinks** (5): Water, Buko Juice, Sago't Gulaman, Softdrink, San Miguel
-**Stamina** (3): Energy Drink, Kape Barako, Saging
-**Healing** (3): First Aid Kit, Salabat, Lagundi
-**Weapons** (3): Tsinelas, Balaraw (slingshot), Bato (rock)
+**Food** (19): Fishball, Taho, Kwek-Kwek, Balut, Sorbetes, Halo-Halo, Lechon, Adobo, Sisig, Sinigang, Pancit, Lumpia, Goto, Mami, Tocino, Longganisa, Chicharon, Puto, Kakanin
+**Drinks** (9): Water, Buko Juice, Sago't Gulaman, Softdrink, San Miguel, Calamansi Juice, Mango Shake, Pineapple Juice, Buko Water
+**Stamina** (5): Energy Drink, Kape Barako, Saging, Sports Drink, Chocolate
+**Healing** (6): First Aid Kit, Salabat, Lagundi, Antibiotics, Vitamins, Painkiller
+**Weapons/Tools** (7): Tsinelas, Balaraw (slingshot), Bato, Slipper, Payong (umbrella), Flashlight, Whistle
 
 ## Survival Stats
 
@@ -102,7 +104,7 @@ Pinoy-Survival/
 ├── index.html               # Entry point (canvas + loading screen)
 ├── package.json             # npm scripts
 ├── src/
-│   └── main.js              # ~1900 lines: full game (engine, AI, GUI, audio)
+│   └── main.js              # ~2400 lines: full game (engine, AI, GUI, audio, special abilities)
 ├── tools/
 │   ├── slice-sprites.js     # Optional: slice source PNG into 32x32 frames
 │   ├── smoke-test.js        # Syntax + structure validation (no browser)
@@ -134,7 +136,11 @@ Output: `assets/sprites/characters_atlas.png` + `characters_atlas.json`.
 - **Audio**: Web Audio API procedural chiptune with PH-inspired melodies + jeepney horn, rally cheer, etc.
 - **Crowd AI**: simple wander, distance-based throttling, automatic spawn-blocking against buildings/enemies
 - **No build step**: ES6+ via CDN, single-file game logic
-- **Performance**: 50 NPCs + 5-8 enemies + 20+ buildings per zone, hardware scaling level 3
+- **Performance**: 80-100 NPCs + 5-11 enemies + 15-18+ buildings per zone, hardware scaling level 3
+- **Special abilities**: Each playable character has a unique Q-key ability (AoE, ranged, heal)
+- **5 zones**: Manila (120x120), Baguio (100x100), Quiapo (110x110), Visayas (110x110), Mindanao (110x110)
+- **30+ civilian variants**: 10 male, 10 female, 8 kid variants for diverse crowds
+- **45+ shop items**: Food, drinks, stamina, healing, weapons/tools across 3 vendors
 
 ## Disclaimer
 

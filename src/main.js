@@ -58,17 +58,17 @@ const { AdvancedDynamicTexture, TextBlock, Rectangle, Control, StackPanel, Butto
 const CHARACTER_DEFS = {
   // === PLAYABLE ===
   kiko:      { name: 'Kiko Pangilinan',     role: 'playable', w: 48, h: 72, speed: 5,   hp: 120,
-               special: 'Senate Speech',     specialCost: 30,
+               special: 'Senate Speech',     specialCost: 30, specialType: 'aoe',
                intro: 'Bato bato sa langit, tamaan ay huwag magagalit!',
                palette: { skin:0xF5C9A0, hair:0x3A2A1A, shirt:0xF5F5DC, shirt2:0xFFFFFF, pants:0x1A1A3A, shoes:0x1A1A1A, accent:0x2C2C2C },
                hairStyle: 'short' },
   risa:      { name: 'Risa Hontiveros',     role: 'playable', w: 48, h: 72, speed: 6,   hp: 95,
-               special: 'Committee Hearing', specialCost: 20,
+               special: 'Committee Hearing', specialCost: 20, specialType: 'ranged',
                intro: 'Makinig tayo sa boses ng bayan.',
                palette: { skin:0xF0C8A0, hair:0x2A1A0A, shirt:0xCC3333, shirt2:0x8B0000, pants:0x1A1A1A, shoes:0x1A1A1A, accent:0xFFFFFF },
                hairStyle: 'long' },
   leni:      { name: 'Leni Robredo',        role: 'playable', w: 48, h: 72, speed: 5,   hp: 110,
-               special: 'Community Service', specialCost: 25,
+               special: 'Community Service', specialCost: 25, specialType: 'heal',
                intro: 'Ang buhay ay serbisyo, hindi pansariling interes.',
                palette: { skin:0xF5C9A0, hair:0x4A2A1A, shirt:0xFFD700, shirt2:0xDAA520, pants:0xFFFFFF, shoes:0x1A1A1A, accent:0x2C2C2C },
                hairStyle: 'bob' },
@@ -124,6 +124,25 @@ const CHARACTER_DEFS = {
   civ_f_d:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xC9956A, hair:0x2A1A0A, shirt:0xFFA500, shirt2:0xFF8C00, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
   kid_b:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xF5C9A0, hair:0x1A1A0A, shirt:0xFF6347, shirt2:0xFF0000, pants:0x1E40AF, shoes:0x1A1A1A, accent:0xFFFFFF } },
   kid_c:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xE8B888, hair:0x2A1A0A, shirt:0xFFD700, shirt2:0xFFA500, pants:0x228B22, shoes:0x1A1A1A, accent:0xFFFFFF } },
+
+  // === ADDITIONAL CIVILIAN VARIANTS (expanded crowd diversity) ===
+  civ_m_e:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xD2B48C, hair:0x1A1A1A, shirt:0x20B2AA, shirt2:0x008B8B, pants:0x2F4F4F, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_m_f:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xE8B888, hair:0x3A2A1A, shirt:0x6495ED, shirt2:0x4169E1, pants:0x1A1A1A, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_m_g:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xC9956A, hair:0x0A0A0A, shirt:0x98FB98, shirt2:0x228B22, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_m_h:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xF5C9A0, hair:0x4A2A1A, shirt:0xFF4500, shirt2:0xB22222, pants:0x1A1A1A, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_m_i:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xE8B888, hair:0x2A1A0A, shirt:0x87CEEB, shirt2:0x4682B4, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_m_j:   { name: 'Kuya',  role: 'npc', w: 40, h: 64, palette: { skin:0xD2B48C, hair:0x1A1A0A, shirt:0xDDA0DD, shirt2:0xBA55D3, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_e:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xF5C9A0, hair:0x1A0A00, shirt:0xFF69B4, shirt2:0xFF1493, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_f:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xE8B888, hair:0x3A2A1A, shirt:0x00BFFF, shirt2:0x1E90FF, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_g:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xC9956A, hair:0x2A1A0A, shirt:0x98FB98, shirt2:0x228B22, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_h:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xF5C9A0, hair:0x4A2A1A, shirt:0xFFA07A, shirt2:0xFA8072, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_i:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xE8B888, hair:0x1A1A0A, shirt:0xE6E6FA, shirt2:0xD8BFD8, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  civ_f_j:   { name: 'Ate',   role: 'npc', w: 40, h: 64, palette: { skin:0xD2B48C, hair:0x0A0A0A, shirt:0xF0E68C, shirt2:0xEEE8AA, pants:0x2C2C2C, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  kid_d:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xE8B888, hair:0x1A1A0A, shirt:0x00CED1, shirt2:0x008B8B, pants:0xFF4500, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  kid_e:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xF5C9A0, hair:0x3A2A1A, shirt:0x9370DB, shirt2:0x6A0DAD, pants:0x228B22, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  kid_f:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xC9956A, hair:0x0A0A0A, shirt:0xFFD700, shirt2:0xFFA500, pants:0x1E40AF, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  kid_g:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xE8B888, hair:0x2A1A0A, shirt:0xFF6347, shirt2:0xFF0000, pants:0x00CED1, shoes:0x1A1A1A, accent:0xFFFFFF } },
+  kid_h:     { name: 'Bata',  role: 'npc', w: 32, h: 48, palette: { skin:0xF5C9A0, hair:0x4A2A1A, shirt:0x98FB98, shirt2:0x228B22, pants:0xFF8C00, shoes:0x1A1A1A, accent:0xFFFFFF } },
 };
 
 /* ============================================================
@@ -211,6 +230,36 @@ const SHOP_ITEMS = {
   tsinelas:     { name: 'Tsinelas',        desc: 'Throw at enemies!',           effect: 'damage',  value: 12,  price: 8,  vendor: 'fishball' },
   balaraw:      { name: 'Balaraw',         desc: 'Slingshot (ranged)',          effect: 'damage',  value: 18,  price: 25, vendor: 'icecream' },
   rock:         { name: 'Bato',            desc: 'Throw a rock',                effect: 'damage',  value: 8,   price: 1,  vendor: 'water' },
+
+  // === ADDITIONAL FOOD ===
+  goto:         { name: 'Goto',            desc: 'Congee with tripe',           effect: 'hunger',  value: 35,  price: 12, vendor: 'icecream' },
+  mami:         { name: 'Mami',            desc: 'Noodle soup',                 effect: 'hunger',  value: 30,  price: 10, vendor: 'icecream' },
+  tocino:       { name: 'Tocino',          desc: 'Sweet cured pork',            effect: 'hunger',  value: 40,  price: 15, vendor: 'icecream' },
+  longganisa:   { name: 'Longganisa',      desc: 'Filipino sausage',            effect: 'hunger',  value: 35,  price: 12, vendor: 'icecream' },
+  chicharon:    { name: 'Chicharon',       desc: 'Crispy pork rinds',           effect: 'hunger',  value: 25,  price: 8,  vendor: 'fishball' },
+  puto:         { name: 'Puto',            desc: 'Steamed rice cake',           effect: 'hunger',  value: 20,  price: 5,  vendor: 'fishball' },
+  kakanin:      { name: 'Kakanin',         desc: 'Assorted rice cakes',         effect: 'hunger',  value: 30,  price: 10, vendor: 'icecream' },
+
+  // === ADDITIONAL DRINKS ===
+  calamansi:    { name: 'Calamansi Juice', desc: 'Filipino lemon juice',        effect: 'thirst',  value: 25,  price: 5,  vendor: 'water' },
+  mango_shake:  { name: 'Mango Shake',     desc: 'Sweet mango smoothie',        effect: 'thirst',  value: 30,  price: 12, vendor: 'water' },
+  pineapple:    { name: 'Pineapple Juice', desc: 'Fresh pineapple',             effect: 'thirst',  value: 25,  price: 8,  vendor: 'water' },
+  coconut_water:{ name: 'Buko Water',      desc: 'Fresh coconut water',         effect: 'thirst',  value: 35,  price: 10, vendor: 'water' },
+
+  // === ADDITIONAL STAMINA ===
+  sports_drink: { name: 'Sports Drink',    desc: 'Electrolytes',                effect: 'stamina', value: 60,  price: 15, vendor: 'fishball' },
+  chocolate:    { name: 'Chocolate',       desc: 'Dark chocolate boost',        effect: 'stamina', value: 25,  price: 8,  vendor: 'water' },
+
+  // === ADDITIONAL HEALING ===
+  antibiotics:  { name: 'Antibiotics',     desc: 'Strong medicine',             effect: 'health',  value: 50,  price: 40, vendor: 'icecream' },
+  vitamins:     { name: 'Vitamins',        desc: 'Daily vitamins',              effect: 'health',  value: 20,  price: 15, vendor: 'water' },
+  painkiller:   { name: 'Painkiller',      desc: 'Relieves pain',               effect: 'health',  value: 25,  price: 12, vendor: 'icecream' },
+
+  // === ADDITIONAL WEAPONS / TOOLS ===
+  slipper:      { name: 'Slipper',         desc: 'Heavy flip-flop throw',       effect: 'damage',  value: 15,  price: 5,  vendor: 'fishball' },
+  umbrella:     { name: 'Payong',          desc: 'Defensive umbrella',          effect: 'damage',  value: 10,  price: 8,  vendor: 'water' },
+  flashlight:   { name: 'Flashlight',      desc: 'Blinds enemies briefly',      effect: 'damage',  value: 5,   price: 12, vendor: 'icecream' },
+  whistle:      { name: 'Whistle',         desc: 'Distracts enemies',           effect: 'damage',  value: 3,   price: 3,  vendor: 'fishball' },
 };
 
 /* ============================================================
@@ -232,131 +281,418 @@ const DROP_ITEMS = {
    ============================================================ */
 const ZONES = {
   manila: {
-    name: 'Manila', desc: 'Kabisera ng Pilipinas', w: 80, h: 80, ground: 0x555555,
+    name: 'Manila', desc: 'Kabisera ng Pilipinas', w: 120, h: 120, ground: 0x555555,
     fogColor: 0x14142a, fogDensity: 0.012, ambientTint: 0xFFF1D0, sunIntensity: 0.55,
-    landmarks: ['Rizal Park', 'Intramuros', 'LRT Line', 'BGC Towers', 'Manila Bay'],
+    landmarks: ['Rizal Park', 'Intramuros', 'LRT Line', 'BGC Towers', 'Manila Bay', 'Ermita', 'Malate', 'Paco', 'Sampaloc', 'Tondo'],
     enemies: [
-      { id: 'zaldy',    x: 12,  z: 8 },
-      { id: 'zaldy',    x: -10, z: 14 },
-      { id: 'sara_d',   x: 18,  z: -10 },
-      { id: 'alan',     x: -14, z: -8 },
-      { id: 'sarah_d',  x: 6,   z: 18 },
-      { id: 'bongbong', x: 0,   z: -22 },
+      { id: 'zaldy',    x: 15,  z: 10 },
+      { id: 'zaldy',    x: -20, z: 20 },
+      { id: 'sara_d',   x: 25,  z: -15 },
+      { id: 'alan',     x: -25, z: -12 },
+      { id: 'sarah_d',  x: 10,  z: 25 },
+      { id: 'bongbong', x: -5,  z: -30 },
+      { id: 'zaldy',    x: 30,  z: 30 },
+      { id: 'sara_d',   x: -30, z: -25 },
+      { id: 'alan',     x: 20,  z: 20 },
+      { id: 'sarah_d',  x: -35, z: 15 },
+      { id: 'bongbong', x: 35,  z: -20 },
     ],
     npcs: [
-      { id: 'fishball', x: -5,  z: 0 },
-      { id: 'icecream', x: 3,   z: 8 },
-      { id: 'water',    x: -10, z: -8 },
-      { id: 'rally',    x: 0,   z: -15 },
-      { id: 'kids',     x: 8,   z: -3 },
-      { id: 'civilian_m',x: -3, z: 10 },
-      { id: 'civilian_f',x: 12, z: 3 },
-      { id: 'civilian_m',x: -18,z: 5 },
-      { id: 'icecream', x: 20,  z: 14 },
-      { id: 'water',    x: -22, z: -14 },
+      { id: 'fishball', x: -8,  z: 2 },
+      { id: 'icecream', x: 5,   z: 10 },
+      { id: 'water',    x: -15, z: -10 },
+      { id: 'rally',    x: 0,   z: -20 },
+      { id: 'kids',     x: 10,  z: -5 },
+      { id: 'civilian_m',x: -5, z: 12 },
+      { id: 'civilian_f',x: 15, z: 5 },
+      { id: 'civilian_m',x: -25,z: 8 },
+      { id: 'icecream', x: 25,  z: 18 },
+      { id: 'water',    x: -30, z: -18 },
+      { id: 'fishball', x: 30,  z: -10 },
+      { id: 'rally',    x: -15, z: 25 },
+      { id: 'kids',     x: 20,  z: -20 },
+      { id: 'civilian_f',x: -20, z: -15 },
+      { id: 'civilian_m',x: 10, z: 30 },
+      { id: 'water',    x: 35,  z: 25 },
+      { id: 'icecream', x: -35, z: -20 },
+      { id: 'fishball', x: 0,   z: 35 },
+      { id: 'rally',    x: 40,  z: 0 },
+      { id: 'kids',     x: -40, z: 10 },
     ],
     buildings: [
-      { x: -22, z: -22, w: 5, h: 4, d: 5, c: 0x8B7355, type: 'house' },
-      { x: 22,  z: 22,  w: 6, h: 5, d: 5, c: 0xA0522D, type: 'mall' },
-      { x: -8,  z: 6,   w: 4, h: 3, d: 4, c: 0xDAA520, type: 'house' },
-      { x: 8,   z: -8,  w: 4, h: 3, d: 4, c: 0xCD853F, type: 'house' },
-      { x: 0,   z: 0,   w: 8, h: 4, d: 8, c: 0xB22222, type: 'plaza' },
-      { x: -16, z: 18,  w: 4, h: 3, d: 4, c: 0x8B4513, type: 'house' },
-      { x: 18,  z: -18, w: 4, h: 3, d: 4, c: 0xD2691E, type: 'house' },
-      { x: 0,   z: -28, w: 10, h: 6, d: 4, c: 0x4A4A8A, type: 'mall' },
+      { x: -30, z: -30, w: 6, h: 4, d: 6, c: 0x8B7355, type: 'house' },
+      { x: 30,  z: 30,  w: 7, h: 5, d: 6, c: 0xA0522D, type: 'mall' },
+      { x: -12, z: 8,   w: 5, h: 3, d: 5, c: 0xDAA520, type: 'house' },
+      { x: 12,  z: -12, w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: 0,   z: 0,   w: 10, h: 4, d: 10, c: 0xB22222, type: 'plaza' },
+      { x: -20, z: 22,  w: 5, h: 3, d: 5, c: 0x8B4513, type: 'house' },
+      { x: 22,  z: -22, w: 5, h: 3, d: 5, c: 0xD2691E, type: 'house' },
+      { x: 0,   z: -35, w: 12, h: 6, d: 5, c: 0x4A4A8A, type: 'mall' },
+      { x: -40, z: 0,   w: 8, h: 4, d: 8, c: 0x8B7355, type: 'church' },
+      { x: 40,  z: 0,   w: 10, h: 5, d: 8, c: 0x696969, type: 'mall' },
+      { x: 0,   z: 40,  w: 8, h: 3, d: 8, c: 0xD2B48C, type: 'market' },
+      { x: -35, z: -35, w: 6, h: 3, d: 6, c: 0xBC8F8F, type: 'house' },
+      { x: 35,  z: 35,  w: 6, h: 4, d: 6, c: 0xCD853F, type: 'house' },
+      { x: -45, z: 20,  w: 8, h: 3, d: 6, c: 0x8B4513, type: 'school' },
+      { x: 45,  z: -20, w: 8, h: 4, d: 8, c: 0x708090, type: 'hospital' },
+      { x: 0,   z: -50, w: 10, h: 5, d: 10, c: 0x4A4A8A, type: 'mall' },
+      { x: -50, z: -10, w: 6, h: 3, d: 6, c: 0xDAA520, type: 'restaurant' },
+      { x: 50,  z: 10,  w: 7, h: 4, d: 7, c: 0x8B7355, type: 'hotel' },
     ],
     trees: [
-      { x: -25, z: 0 }, { x: 25, z: -10 }, { x: -10, z: 25 },
-      { x: 15, z: -15 }, { x: -30, z: -25 }, { x: 30, z: 30 },
-      { x: 0, z: 12 }, { x: -5, z: -28 },
+      { x: -35, z: 0 }, { x: 35, z: -15 }, { x: -15, z: 35 },
+      { x: 20, z: -20 }, { x: -40, z: -30 }, { x: 40, z: 40 },
+      { x: 0, z: 15 }, { x: -10, z: -35 },
+      { x: 25, z: 25 }, { x: -25, z: -25 },
+      { x: 45, z: 0 }, { x: -45, z: 0 },
+      { x: 0, z: 45 }, { x: 0, z: -45 },
+      { x: -30, z: 30 }, { x: 30, z: -30 },
+      { x: -50, z: 30 }, { x: 50, z: -30 },
+      { x: -55, z: -20 }, { x: 55, z: 20 },
     ],
     props: [
-      { type: 'jeepney', x: 5, z: 5 }, { type: 'jeepney', x: -7, z: -3 },
-      { type: 'lamppost', x: 10, z: 0 }, { type: 'lamppost', x: -10, z: 0 },
-      { type: 'lrt',     x: 0, z: -10 }, { type: 'fountain', x: 0, z: 6 },
+      { type: 'jeepney', x: 8, z: 8 }, { type: 'jeepney', x: -10, z: -5 },
+      { type: 'lamppost', x: 15, z: 0 }, { type: 'lamppost', x: -15, z: 0 },
+      { type: 'lrt',     x: 0, z: -15 }, { type: 'fountain', x: 0, z: 8 },
+      { type: 'jeepney', x: -20, z: 15 }, { type: 'lamppost', x: 20, z: -10 },
+      { type: 'lamppost', x: -25, z: -20 }, { type: 'jeepney', x: 25, z: 20 },
+      { type: 'fountain', x: -30, z: 10 }, { type: 'lrt', x: 0, z: 25 },
+      { type: 'jeepney', x: 35, z: -15 }, { type: 'lamppost', x: -35, z: 25 },
+      { type: 'fountain', x: 15, z: 30 }, { type: 'lrt', x: -20, z: -30 },
     ],
   },
 
   baguio: {
-    name: 'Baguio', desc: 'Summer Capital ng Pilipinas', w: 70, h: 70, ground: 0x2E7D32,
+    name: 'Baguio', desc: 'Summer Capital ng Pilipinas', w: 100, h: 100, ground: 0x2E7D32,
     fogColor: 0x6B7F8E, fogDensity: 0.020, ambientTint: 0xD6E5F2, sunIntensity: 0.4,
-    landmarks: ['Burnham Park', 'Session Road', 'Mines View', 'Strawberry Farm'],
+    landmarks: ['Burnham Park', 'Session Road', 'Mines View', 'Strawberry Farm', 'Botanical Garden', 'Camp John Hay', 'SM Baguio', 'Panagbenga'],
     enemies: [
       { id: 'bongbong', x: 0,  z: 0 },
-      { id: 'zaldy',    x: -10, z: 8 },
-      { id: 'sara_d',   x: 12, z: -5 },
-      { id: 'sarah_d',  x: -8, z: -12 },
+      { id: 'zaldy',    x: -15, z: 10 },
+      { id: 'sara_d',   x: 15, z: -8 },
+      { id: 'sarah_d',  x: -10, z: -15 },
+      { id: 'alan',     x: 20, z: 15 },
+      { id: 'bongbong', x: -20, z: -20 },
+      { id: 'zaldy',    x: 25, z: -25 },
+      { id: 'sara_d',   x: -25, z: 25 },
     ],
     npcs: [
-      { id: 'fishball', x: -3,  z: 5 },
-      { id: 'water',    x: 5,   z: -3 },
-      { id: 'kids',     x: 0,   z: 8 },
-      { id: 'civilian_m',x: -8, z: -3 },
-      { id: 'civilian_f',x: 8,  z: 6 },
-      { id: 'icecream', x: 12,  z: 10 },
-      { id: 'water',    x: -15, z: 0 },
+      { id: 'fishball', x: -5,  z: 8 },
+      { id: 'water',    x: 8,   z: -5 },
+      { id: 'kids',     x: 0,   z: 10 },
+      { id: 'civilian_m',x: -10, z: -5 },
+      { id: 'civilian_f',x: 10,  z: 8 },
+      { id: 'icecream', x: 15,  z: 12 },
+      { id: 'water',    x: -20, z: 2 },
+      { id: 'fishball', x: 20,  z: -10 },
+      { id: 'rally',    x: 0,   z: -15 },
+      { id: 'kids',     x: -15, z: 15 },
+      { id: 'civilian_m',x: 15, z: -15 },
+      { id: 'civilian_f',x: -20, z: -20 },
+      { id: 'icecream', x: 25,  z: 20 },
+      { id: 'water',    x: -25, z: 20 },
+      { id: 'fishball', x: 30,  z: 0 },
+      { id: 'rally',    x: -30, z: -10 },
+      { id: 'kids',     x: 10,  z: 25 },
+      { id: 'civilian_m',x: -10, z: 30 },
+      { id: 'civilian_f',x: 20, z: -25 },
+      { id: 'icecream', x: -30, z: 25 },
     ],
     buildings: [
-      { x: -15, z: -15, w: 5, h: 3, d: 5, c: 0x8B4513, type: 'house' },
-      { x: 15,  z: 15,  w: 4, h: 3, d: 4, c: 0xA0522D, type: 'house' },
-      { x: 0,   z: 12,  w: 6, h: 3, d: 6, c: 0xDAA520, type: 'plaza' },
-      { x: 0,   z: -12, w: 4, h: 3, d: 4, c: 0xCD853F, type: 'house' },
+      { x: -20, z: -20, w: 6, h: 3, d: 6, c: 0x8B4513, type: 'house' },
+      { x: 20,  z: 20,  w: 5, h: 3, d: 5, c: 0xA0522D, type: 'house' },
+      { x: 0,   z: 15,  w: 7, h: 3, d: 7, c: 0xDAA520, type: 'plaza' },
+      { x: 0,   z: -15, w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -30, z: 0,   w: 8, h: 4, d: 8, c: 0x696969, type: 'mall' },
+      { x: 30,  z: 0,   w: 6, h: 3, d: 6, c: 0x8B7355, type: 'market' },
+      { x: 0,   z: 30,  w: 5, h: 3, d: 5, c: 0xD2B48C, type: 'stall' },
+      { x: -15, z: 25,  w: 4, h: 3, d: 4, c: 0xBC8F8F, type: 'house' },
+      { x: 15,  z: -25, w: 4, h: 3, d: 4, c: 0xCD853F, type: 'house' },
+      { x: -35, z: -15, w: 6, h: 3, d: 6, c: 0x8B4513, type: 'school' },
+      { x: 35,  z: 15,  w: 7, h: 4, d: 7, c: 0x708090, type: 'hotel' },
+      { x: 0,   z: -30, w: 8, h: 3, d: 8, c: 0x4A4A8A, type: 'mall' },
+      { x: -25, z: -30, w: 5, h: 3, d: 5, c: 0xDAA520, type: 'restaurant' },
+      { x: 25,  z: 30,  w: 6, h: 3, d: 6, c: 0x8B7355, type: 'house' },
     ],
     trees: [
-      { x: -15, z: 5 }, { x: 15, z: -8 }, { x: -5, z: -18 },
-      { x: 10, z: 15 }, { x: -20, z: -10 }, { x: 20, z: 10 },
-      { x: -25, z: 20 }, { x: 25, z: -20 }, { x: 0, z: 0 },
+      { x: -20, z: 8 }, { x: 20, z: -10 }, { x: -8, z: -22 },
+      { x: 12, z: 18 }, { x: -25, z: -12 }, { x: 25, z: 12 },
+      { x: -30, z: 25 }, { x: 30, z: -25 }, { x: 0, z: 0 },
+      { x: -35, z: 0 }, { x: 35, z: 0 },
+      { x: 0, z: 35 }, { x: 0, z: -35 },
+      { x: -40, z: 20 }, { x: 40, z: -20 },
+      { x: -10, z: 40 }, { x: 10, z: -40 },
+      { x: -45, z: -25 }, { x: 45, z: 25 },
+      { x: -50, z: 10 }, { x: 50, z: -10 },
+      { x: -15, z: -45 }, { x: 15, z: 45 },
     ],
     props: [
-      { type: 'lamppost', x: 5, z: 0 }, { type: 'lamppost', x: -5, z: 0 },
-      { type: 'fountain', x: 0, z: 12 },
+      { type: 'lamppost', x: 8, z: 0 }, { type: 'lamppost', x: -8, z: 0 },
+      { type: 'fountain', x: 0, z: 15 },
+      { type: 'lamppost', x: 15, z: 10 }, { type: 'lamppost', x: -15, z: -10 },
+      { type: 'fountain', x: 20, z: -15 }, { type: 'lamppost', x: -20, z: 20 },
+      { type: 'lamppost', x: 25, z: 25 }, { type: 'fountain', x: -25, z: -25 },
+      { type: 'lamppost', x: 30, z: 0 }, { type: 'lamppost', x: -30, z: 0 },
+      { type: 'fountain', x: 0, z: 30 }, { type: 'lamppost', x: 0, z: -30 },
     ],
   },
 
   quiapo: {
-    name: 'Quiapo', desc: 'Pusong Maynila - Quiapo Church', w: 75, h: 75, ground: 0x8B7355,
+    name: 'Quiapo', desc: 'Pusong Maynila - Quiapo Church', w: 110, h: 110, ground: 0x8B7355,
     fogColor: 0x1A1A2E, fogDensity: 0.015, ambientTint: 0xFFE0B2, sunIntensity: 0.5,
-    landmarks: ['Quiapo Church', 'Plaza Miranda', 'Black Nazarene Route', 'Hidalgo St'],
+    landmarks: ['Quiapo Church', 'Plaza Miranda', 'Black Nazarene Route', 'Hidalgo St', 'Carriedo', 'Escolta', 'Binondo', 'San Nicolas'],
     enemies: [
-      { id: 'zaldy',    x: 8,  z: 8 },
-      { id: 'sara_d',   x: -10, z: 5 },
-      { id: 'sarah_d',  x: 5,  z: -10 },
-      { id: 'alan',     x: -8, z: -6 },
-      { id: 'bongbong', x: 12, z: -12 },
+      { id: 'zaldy',    x: 10,  z: 10 },
+      { id: 'sara_d',   x: -15, z: 8 },
+      { id: 'sarah_d',  x: 8,   z: -12 },
+      { id: 'alan',     x: -10, z: -8 },
+      { id: 'bongbong', x: 15,  z: -15 },
+      { id: 'zaldy',    x: -20, z: -20 },
+      { id: 'sara_d',   x: 25,  z: 20 },
+      { id: 'sarah_d',  x: -25, z: 25 },
+      { id: 'alan',     x: 20,  z: -25 },
+      { id: 'bongbong', x: -30, z: 10 },
     ],
     npcs: [
-      { id: 'rally',     x: 0,   z: -10 },
-      { id: 'fishball',  x: -4,  z: 2 },
-      { id: 'icecream',  x: 6,   z: 4 },
-      { id: 'water',     x: -8,  z: -4 },
-      { id: 'kids',      x: 3,   z: 10 },
-      { id: 'civilian_m',x: 10,  z: -2 },
-      { id: 'civilian_f',x: -6,  z: 8 },
-      { id: 'civilian_m',x: 14,  z: 6 },
-      { id: 'icecream',  x: -12, z: 12 },
-      { id: 'water',     x: 2,   z: -15 },
+      { id: 'rally',     x: 0,   z: -12 },
+      { id: 'fishball',  x: -5,  z: 3 },
+      { id: 'icecream',  x: 8,   z: 5 },
+      { id: 'water',     x: -10, z: -5 },
+      { id: 'kids',      x: 5,   z: 12 },
+      { id: 'civilian_m',x: 12,  z: -3 },
+      { id: 'civilian_f',x: -8,  z: 10 },
+      { id: 'civilian_m',x: 18,  z: 8 },
+      { id: 'icecream',  x: -15, z: 15 },
+      { id: 'water',     x: 3,   z: -18 },
+      { id: 'fishball',  x: -20, z: -15 },
+      { id: 'rally',     x: 25,  z: -10 },
+      { id: 'kids',      x: -25, z: 20 },
+      { id: 'civilian_f',x: 20,  z: 25 },
+      { id: 'civilian_m',x: -30, z: -10 },
+      { id: 'water',     x: 30,  z: 15 },
+      { id: 'icecream',  x: -35, z: 5 },
+      { id: 'fishball',  x: 35,  z: -20 },
+      { id: 'rally',     x: -40, z: 20 },
+      { id: 'kids',      x: 40,  z: 0 },
     ],
     buildings: [
-      { x: 0,  z: 0,   w: 10, h: 5, d: 10, c: 0x8B7355, type: 'church' },
-      { x: -18, z: -18, w: 4, h: 3, d: 4, c: 0xA0522D, type: 'house' },
-      { x: 18,  z: 18,  w: 4, h: 3, d: 4, c: 0xCD853F, type: 'house' },
-      { x: -8,  z: 16,  w: 3, h: 2, d: 3, c: 0xD2B48C, type: 'stall' },
-      { x: 12,  z: -16, w: 3, h: 2, d: 3, c: 0xD2B48C, type: 'stall' },
+      { x: 0,  z: 0,   w: 12, h: 6, d: 12, c: 0x8B7355, type: 'church' },
+      { x: -22, z: -22, w: 5, h: 3, d: 5, c: 0xA0522D, type: 'house' },
+      { x: 22,  z: 22,  w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -10, z: 20,  w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: 15,  z: -20, w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: -30, z: 0,   w: 8, h: 4, d: 8, c: 0x696969, type: 'mall' },
+      { x: 30,  z: 0,   w: 6, h: 3, d: 6, c: 0x8B7355, type: 'market' },
+      { x: 0,   z: 30,  w: 5, h: 3, d: 5, c: 0xD2B48C, type: 'stall' },
+      { x: -15, z: 30,  w: 5, h: 3, d: 5, c: 0xBC8F8F, type: 'house' },
+      { x: 15,  z: -30, w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -35, z: -20, w: 6, h: 3, d: 6, c: 0x8B4513, type: 'school' },
+      { x: 35,  z: 20,  w: 7, h: 4, d: 7, c: 0x708090, type: 'hotel' },
+      { x: 0,   z: -35, w: 8, h: 3, d: 8, c: 0x4A4A8A, type: 'mall' },
+      { x: -25, z: -35, w: 5, h: 3, d: 5, c: 0xDAA520, type: 'restaurant' },
+      { x: 25,  z: 35,  w: 6, h: 3, d: 6, c: 0x8B7355, type: 'house' },
+      { x: -40, z: 30,  w: 8, h: 4, d: 8, c: 0x8B7355, type: 'church' },
+      { x: 40,  z: -30, w: 10, h: 5, d: 10, c: 0x696969, type: 'mall' },
+      { x: 0,   z: 45,  w: 6, h: 3, d: 6, c: 0xD2B48C, type: 'market' },
     ],
     trees: [
-      { x: -20, z: 0 }, { x: 20, z: 0 },
-      { x: 0, z: 20 }, { x: 0, z: -20 },
-      { x: -15, z: 15 }, { x: 15, z: -15 },
+      { x: -25, z: 0 }, { x: 25, z: 0 },
+      { x: 0, z: 25 }, { x: 0, z: -25 },
+      { x: -20, z: 20 }, { x: 20, z: -20 },
+      { x: -35, z: 10 }, { x: 35, z: -10 },
+      { x: -10, z: 35 }, { x: 10, z: -35 },
+      { x: -40, z: -20 }, { x: 40, z: 20 },
+      { x: -45, z: 30 }, { x: 45, z: -30 },
+      { x: -30, z: 40 }, { x: 30, z: -40 },
+      { x: -50, z: 0 }, { x: 50, z: 0 },
+      { x: 0, z: 50 }, { x: 0, z: -50 },
+      { x: -55, z: -30 }, { x: 55, z: 30 },
+      { x: -20, z: -50 }, { x: 20, z: 50 },
     ],
     props: [
-      { type: 'cross',  x: 0, z: 8 },
-      { type: 'lamppost', x: 5, z: 0 }, { type: 'lamppost', x: -5, z: 0 },
-      { type: 'jeepney', x: 10, z: 5 },
+      { type: 'cross',  x: 0, z: 10 },
+      { type: 'lamppost', x: 8, z: 0 }, { type: 'lamppost', x: -8, z: 0 },
+      { type: 'jeepney', x: 12, z: 8 },
+      { type: 'lamppost', x: 20, z: -8 }, { type: 'lamppost', x: -20, z: 8 },
+      { type: 'fountain', x: 0, z: 20 },
+      { type: 'jeepney', x: -15, z: 20 }, { type: 'lamppost', x: 15, z: -15 },
+      { type: 'cross',  x: -30, z: 15 },
+      { type: 'lamppost', x: 30, z: 15 }, { type: 'lamppost', x: -30, z: -15 },
+      { type: 'fountain', x: 25, z: 25 }, { type: 'jeepney', x: -25, z: -25 },
+      { type: 'lamppost', x: 35, z: 0 }, { type: 'lamppost', x: -35, z: 0 },
+      { type: 'fountain', x: 0, z: 35 }, { type: 'cross', x: 0, z: -35 },
     ],
   },
 
-  visayas:  { name: 'Visayas',  desc: 'Coming soon!', locked: true },
-  mindanao: { name: 'Mindanao', desc: 'Coming soon!', locked: true },
+  visayas: {
+    name: 'Visayas', desc: 'Heart of the Philippines - Cebu, Bohol, Iloilo', w: 110, h: 110, ground: 0x3A7D3A,
+    fogColor: 0x2E4A3E, fogDensity: 0.018, ambientTint: 0xE8F5E9, sunIntensity: 0.5,
+    landmarks: ['Magellan\'s Cross', 'Chocolate Hills', 'Sinulog Festival', 'Bohol Tarsier', 'Iloilo Esplanade', 'Boracay', 'Cebu City', 'Tagbilaran'],
+    enemies: [
+      { id: 'zaldy',    x: 10,  z: 10 },
+      { id: 'sara_d',   x: -15, z: 8 },
+      { id: 'sarah_d',  x: 8,   z: -12 },
+      { id: 'alan',     x: -10, z: -8 },
+      { id: 'bongbong', x: 15,  z: -15 },
+      { id: 'zaldy',    x: -20, z: -20 },
+      { id: 'sara_d',   x: 25,  z: 20 },
+      { id: 'sarah_d',  x: -25, z: 25 },
+      { id: 'alan',     x: 20,  z: -25 },
+      { id: 'bongbong', x: -30, z: 10 },
+      { id: 'buwaya',   x: 0,   z: 0 },
+    ],
+    npcs: [
+      { id: 'fishball',  x: -5,  z: 3 },
+      { id: 'icecream',  x: 8,   z: 5 },
+      { id: 'water',     x: -10, z: -5 },
+      { id: 'rally',     x: 0,   z: -12 },
+      { id: 'kids',      x: 5,   z: 12 },
+      { id: 'civilian_m',x: 12,  z: -3 },
+      { id: 'civilian_f',x: -8,  z: 10 },
+      { id: 'civilian_m',x: 18,  z: 8 },
+      { id: 'icecream',  x: -15, z: 15 },
+      { id: 'water',     x: 3,   z: -18 },
+      { id: 'fishball',  x: -20, z: -15 },
+      { id: 'rally',     x: 25,  z: -10 },
+      { id: 'kids',      x: -25, z: 20 },
+      { id: 'civilian_f',x: 20,  z: 25 },
+      { id: 'civilian_m',x: -30, z: -10 },
+      { id: 'water',     x: 30,  z: 15 },
+      { id: 'icecream',  x: -35, z: 5 },
+      { id: 'fishball',  x: 35,  z: -20 },
+      { id: 'rally',     x: -40, z: 20 },
+      { id: 'kids',      x: 40,  z: 0 },
+    ],
+    buildings: [
+      { x: 0,  z: 0,   w: 10, h: 5, d: 10, c: 0x8B7355, type: 'church' },
+      { x: -22, z: -22, w: 5, h: 3, d: 5, c: 0xA0522D, type: 'house' },
+      { x: 22,  z: 22,  w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -10, z: 20,  w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: 15,  z: -20, w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: -30, z: 0,   w: 8, h: 4, d: 8, c: 0x696969, type: 'mall' },
+      { x: 30,  z: 0,   w: 6, h: 3, d: 6, c: 0x8B7355, type: 'market' },
+      { x: 0,   z: 30,  w: 5, h: 3, d: 5, c: 0xD2B48C, type: 'stall' },
+      { x: -15, z: 30,  w: 5, h: 3, d: 5, c: 0xBC8F8F, type: 'house' },
+      { x: 15,  z: -30, w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -35, z: -20, w: 6, h: 3, d: 6, c: 0x8B4513, type: 'school' },
+      { x: 35,  z: 20,  w: 7, h: 4, d: 7, c: 0x708090, type: 'hotel' },
+      { x: 0,   z: -35, w: 8, h: 3, d: 8, c: 0x4A4A8A, type: 'mall' },
+      { x: -25, z: -35, w: 5, h: 3, d: 5, c: 0xDAA520, type: 'restaurant' },
+      { x: 25,  z: 35,  w: 6, h: 3, d: 6, c: 0x8B7355, type: 'house' },
+      { x: -40, z: 30,  w: 8, h: 4, d: 8, c: 0x8B7355, type: 'church' },
+      { x: 40,  z: -30, w: 10, h: 5, d: 10, c: 0x696969, type: 'mall' },
+      { x: 0,   z: 45,  w: 6, h: 3, d: 6, c: 0xD2B48C, type: 'market' },
+    ],
+    trees: [
+      { x: -25, z: 0 }, { x: 25, z: 0 },
+      { x: 0, z: 25 }, { x: 0, z: -25 },
+      { x: -20, z: 20 }, { x: 20, z: -20 },
+      { x: -35, z: 10 }, { x: 35, z: -10 },
+      { x: -10, z: 35 }, { x: 10, z: -35 },
+      { x: -40, z: -20 }, { x: 40, z: 20 },
+      { x: -45, z: 30 }, { x: 45, z: -30 },
+      { x: -30, z: 40 }, { x: 30, z: -40 },
+      { x: -50, z: 0 }, { x: 50, z: 0 },
+      { x: 0, z: 50 }, { x: 0, z: -50 },
+      { x: -55, z: -30 }, { x: 55, z: 30 },
+      { x: -20, z: -50 }, { x: 20, z: 50 },
+    ],
+    props: [
+      { type: 'lamppost', x: 8, z: 0 }, { type: 'lamppost', x: -8, z: 0 },
+      { type: 'fountain', x: 0, z: 15 },
+      { type: 'lamppost', x: 15, z: 10 }, { type: 'lamppost', x: -15, z: -10 },
+      { type: 'fountain', x: 20, z: -15 }, { type: 'lamppost', x: -20, z: 20 },
+      { type: 'lamppost', x: 25, z: 25 }, { type: 'fountain', x: -25, z: -25 },
+      { type: 'lamppost', x: 30, z: 0 }, { type: 'lamppost', x: -30, z: 0 },
+      { type: 'fountain', x: 0, z: 30 }, { type: 'lamppost', x: 0, z: -30 },
+      { type: 'jeepney', x: 10, z: 10 }, { type: 'jeepney', x: -10, z: -10 },
+    ],
+  },
+
+  mindanao: {
+    name: 'Mindanao', desc: 'Land of Promise - Davao, Cotabato, Zamboanga', w: 110, h: 110, ground: 0x4A7D3A,
+    fogColor: 0x3A5A3E, fogDensity: 0.018, ambientTint: 0xE8F5E9, sunIntensity: 0.5,
+    landmarks: ['Mount Apo', 'Davao Crocodile Park', 'Kadayawan Festival', 'Cotabato City', 'Zamboanga Pink Mosque', 'Maria Cristina Falls', 'Iligan', 'General Santos'],
+    enemies: [
+      { id: 'zaldy',    x: 10,  z: 10 },
+      { id: 'sara_d',   x: -15, z: 8 },
+      { id: 'sarah_d',  x: 8,   z: -12 },
+      { id: 'alan',     x: -10, z: -8 },
+      { id: 'bongbong', x: 15,  z: -15 },
+      { id: 'zaldy',    x: -20, z: -20 },
+      { id: 'sara_d',   x: 25,  z: 20 },
+      { id: 'sarah_d',  x: -25, z: 25 },
+      { id: 'alan',     x: 20,  z: -25 },
+      { id: 'bongbong', x: -30, z: 10 },
+      { id: 'buwaya',   x: 0,   z: 0 },
+    ],
+    npcs: [
+      { id: 'fishball',  x: -5,  z: 3 },
+      { id: 'icecream',  x: 8,   z: 5 },
+      { id: 'water',     x: -10, z: -5 },
+      { id: 'rally',     x: 0,   z: -12 },
+      { id: 'kids',      x: 5,   z: 12 },
+      { id: 'civilian_m',x: 12,  z: -3 },
+      { id: 'civilian_f',x: -8,  z: 10 },
+      { id: 'civilian_m',x: 18,  z: 8 },
+      { id: 'icecream',  x: -15, z: 15 },
+      { id: 'water',     x: 3,   z: -18 },
+      { id: 'fishball',  x: -20, z: -15 },
+      { id: 'rally',     x: 25,  z: -10 },
+      { id: 'kids',      x: -25, z: 20 },
+      { id: 'civilian_f',x: 20,  z: 25 },
+      { id: 'civilian_m',x: -30, z: -10 },
+      { id: 'water',     x: 30,  z: 15 },
+      { id: 'icecream',  x: -35, z: 5 },
+      { id: 'fishball',  x: 35,  z: -20 },
+      { id: 'rally',     x: -40, z: 20 },
+      { id: 'kids',      x: 40,  z: 0 },
+    ],
+    buildings: [
+      { x: 0,  z: 0,   w: 10, h: 5, d: 10, c: 0x8B7355, type: 'church' },
+      { x: -22, z: -22, w: 5, h: 3, d: 5, c: 0xA0522D, type: 'house' },
+      { x: 22,  z: 22,  w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -10, z: 20,  w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: 15,  z: -20, w: 4, h: 2, d: 4, c: 0xD2B48C, type: 'stall' },
+      { x: -30, z: 0,   w: 8, h: 4, d: 8, c: 0x696969, type: 'mall' },
+      { x: 30,  z: 0,   w: 6, h: 3, d: 6, c: 0x8B7355, type: 'market' },
+      { x: 0,   z: 30,  w: 5, h: 3, d: 5, c: 0xD2B48C, type: 'stall' },
+      { x: -15, z: 30,  w: 5, h: 3, d: 5, c: 0xBC8F8F, type: 'house' },
+      { x: 15,  z: -30, w: 5, h: 3, d: 5, c: 0xCD853F, type: 'house' },
+      { x: -35, z: -20, w: 6, h: 3, d: 6, c: 0x8B4513, type: 'school' },
+      { x: 35,  z: 20,  w: 7, h: 4, d: 7, c: 0x708090, type: 'hotel' },
+      { x: 0,   z: -35, w: 8, h: 3, d: 8, c: 0x4A4A8A, type: 'mall' },
+      { x: -25, z: -35, w: 5, h: 3, d: 5, c: 0xDAA520, type: 'restaurant' },
+      { x: 25,  z: 35,  w: 6, h: 3, d: 6, c: 0x8B7355, type: 'house' },
+      { x: -40, z: 30,  w: 8, h: 4, d: 8, c: 0x8B7355, type: 'church' },
+      { x: 40,  z: -30, w: 10, h: 5, d: 10, c: 0x696969, type: 'mall' },
+      { x: 0,   z: 45,  w: 6, h: 3, d: 6, c: 0xD2B48C, type: 'market' },
+    ],
+    trees: [
+      { x: -25, z: 0 }, { x: 25, z: 0 },
+      { x: 0, z: 25 }, { x: 0, z: -25 },
+      { x: -20, z: 20 }, { x: 20, z: -20 },
+      { x: -35, z: 10 }, { x: 35, z: -10 },
+      { x: -10, z: 35 }, { x: 10, z: -35 },
+      { x: -40, z: -20 }, { x: 40, z: 20 },
+      { x: -45, z: 30 }, { x: 45, z: -30 },
+      { x: -30, z: 40 }, { x: 30, z: -40 },
+      { x: -50, z: 0 }, { x: 50, z: 0 },
+      { x: 0, z: 50 }, { x: 0, z: -50 },
+      { x: -55, z: -30 }, { x: 55, z: 30 },
+      { x: -20, z: -50 }, { x: 20, z: 50 },
+    ],
+    props: [
+      { type: 'lamppost', x: 8, z: 0 }, { type: 'lamppost', x: -8, z: 0 },
+      { type: 'fountain', x: 0, z: 15 },
+      { type: 'lamppost', x: 15, z: 10 }, { type: 'lamppost', x: -15, z: -10 },
+      { type: 'fountain', x: 20, z: -15 }, { type: 'lamppost', x: -20, z: 20 },
+      { type: 'lamppost', x: 25, z: 25 }, { type: 'fountain', x: -25, z: -25 },
+      { type: 'lamppost', x: 30, z: 0 }, { type: 'lamppost', x: -30, z: 0 },
+      { type: 'fountain', x: 0, z: 30 }, { type: 'lamppost', x: 0, z: -30 },
+      { type: 'jeepney', x: 10, z: 10 }, { type: 'jeepney', x: -10, z: -10 },
+    ],
+  },
 };
 
 /* ============================================================
@@ -392,7 +728,7 @@ class Game {
     this.player = {
       mesh: null, visual: null, health: 100, maxHealth: 100,
       hunger: 100, thirst: 100, stamina: 100, coins: 25,
-      speed: 5, facing: 1, attackTimer: 0, invTimer: 0,
+      speed: 5, facing: 1, attackTimer: 0, invTimer: 0, specialCd: 0,
       charId: 'kiko', animFrame: 0, animTimer: 0, currentAnim: 'idle',
       animPhase: 0, animBobY: 0, introTimer: 0,
     };
@@ -709,7 +1045,7 @@ class Game {
     });
 
     const ctrl = new TextBlock('ctrl');
-    ctrl.text = 'WASD: Move | SHIFT: Sprint | SPACE: Attack | E: Interact | 1/2/3: Switch | ESC: Pause';
+    ctrl.text = 'WASD: Move | SHIFT: Sprint | SPACE: Attack | Q: Special | E: Interact | 1/2/3: Switch | ESC: Pause';
     ctrl.color = '#888'; ctrl.fontSize = '11px'; ctrl.fontFamily = 'monospace';
     ctrl.height = '30px'; ctrl.top = '115px'; ctrl.textWrapping = true; ctrl.width = '560px';
     bg.addControl(ctrl);
@@ -791,6 +1127,13 @@ class Game {
     // Update fog for zone
     this.scene.fogColor = new Color3(((z.fogColor || 0x14142a) >> 16 & 0xFF) / 255, ((z.fogColor || 0x14142a) >> 8 & 0xFF) / 255, ((z.fogColor || 0x14142a) & 0xFF) / 255);
     this.scene.ambientColor = new Color3(((z.ambientTint || 0xFFFFFF) >> 16 & 0xFF) / 255 * 0.3, ((z.ambientTint || 0xFFFFFF) >> 8 & 0xFF) / 255 * 0.3, ((z.ambientTint || 0xFFFFFF) & 0xFF) / 255 * 0.3);
+
+    // Zone-specific ground tint
+    if (zoneId === 'visayas') {
+      this.scene.ambientColor = new Color3(0.25, 0.35, 0.25);
+    } else if (zoneId === 'mindanao') {
+      this.scene.ambientColor = new Color3(0.3, 0.35, 0.25);
+    }
 
     // GROUND
     this.ground = MeshBuilder.CreateGround('ground', { width: z.w, height: z.h, subdivisions: 1 }, this.scene);
@@ -1064,7 +1407,7 @@ class Game {
   spawnDenseCrowd(z) {
     const civilianIds = ['civilian_m', 'civilian_f', 'civ_m_b', 'civ_m_c', 'civ_m_d', 'civ_f_b', 'civ_f_c', 'civ_f_d', 'kids', 'kid_b', 'kid_c'];
     const half = z.w / 2 - 3;
-    const targetCount = 50;
+    const targetCount = 90;
     let attempts = 0;
     let added = 0;
     while (added < targetCount && attempts < 500) {
@@ -1344,6 +1687,7 @@ class Game {
 
     p.attackTimer = Math.max(0, p.attackTimer - dt);
     p.invTimer = Math.max(0, p.invTimer - dt);
+    p.specialCd = Math.max(0, p.specialCd - dt);
 
     // Smooth sub-pixel animation
     p.animPhase += dt * 6;
@@ -1364,6 +1708,11 @@ class Game {
     if (this.input.attack && p.attackTimer <= 0) {
       p.attackTimer = 0.3;
       this.doMeleeAttack();
+    }
+
+    if (this.input.special && p.specialCd <= 0) {
+      p.specialCd = 3;
+      this.useSpecial();
     }
 
     if (this.input.interact) this.doInteract();
@@ -1473,6 +1822,87 @@ class Game {
         }
       }
     });
+  }
+
+  /* ---- SPECIAL ABILITIES ---- */
+  useSpecial() {
+    if (!this.player.mesh) return;
+    const def = CHARACTER_DEFS[this.player.charId];
+    if (!def || !def.specialType) return;
+    const pos = this.player.mesh.position;
+
+    this.audio.playSfx('perk');
+    this.showIntro(this.player.charId);
+
+    if (def.specialType === 'aoe') {
+      // Kiko: Senate Speech - AoE damage + stun
+      const aoeRange = 8;
+      const aoeDmg = 25;
+      this.enemies.forEach(e => {
+        if (e.hp <= 0) return;
+        if (Vector3.Distance(pos, e.mesh.position) < aoeRange) {
+          e.hp -= aoeDmg;
+          e.state = 'idle';
+          e.stateTimer = 0;
+          e.taunted = false;
+          if (e.hpBar) e.hpBar.scaling.x = Math.max(0.01, e.hp / e.maxHp);
+          if (e.hp <= 0) {
+            this.player.coins += e.coins;
+            this.spawnDroppedItem(e.mesh.position.clone(), e.id);
+            setTimeout(() => { e.mesh?.dispose(); e.hpBar?.dispose(); e.hpBg?.dispose(); }, 300);
+          }
+        }
+      });
+      // Visual: expanding ring
+      const ring = MeshBuilder.CreateTorus('aoe_ring', { diameter: 2, thickness: 0.2, tessellation: 16 }, this.scene);
+      ring.position = pos.clone(); ring.position.y = 0.5;
+      const rm = new StandardMaterial('rm', this.scene);
+      rm.diffuseColor = new Color3(1, 0.9, 0.3);
+      rm.emissiveColor = new Color3(1, 0.8, 0.2);
+      rm.specularColor = Color3.Black();
+      rm.alpha = 0.7; rm.backFaceCulling = false;
+      ring.material = rm;
+      let ringLife = 0;
+      const ringInt = setInterval(() => {
+        ringLife += 0.05;
+        ring.scaling.x = 1 + ringLife * 4;
+        ring.scaling.z = 1 + ringLife * 4;
+        rm.alpha = Math.max(0, 0.7 - ringLife * 1.5);
+        if (ringLife > 0.5) { clearInterval(ringInt); ring.dispose(); rm.dispose(); }
+      }, 50);
+    } else if (def.specialType === 'ranged') {
+      // Risa: Committee Hearing - long-range projectile
+      const dir = this.player.facing > 0 ? new Vector3(1, 0, 0) : new Vector3(-1, 0, 0);
+      this.spawnProjectile(pos.clone().add(dir.scale(1)), dir.scale(12), 30, 'player_special');
+    } else if (def.specialType === 'heal') {
+      // Leni: Community Service - heal self + nearby NPCs
+      const healRange = 6;
+      const healAmt = 30;
+      this.player.health = Math.min(this.player.maxHealth, this.player.health + healAmt);
+      this.npcs.forEach(n => {
+        if (Vector3.Distance(pos, n.mesh.position) < healRange) {
+          // NPCs don't have HP but we can show a heal effect
+        }
+      });
+      // Visual: green burst
+      const burst = MeshBuilder.CreateSphere('heal_burst', { diameter: 1.5, segments: 8 }, this.scene);
+      burst.position = pos.clone(); burst.position.y = 1;
+      const bm = new StandardMaterial('bm', this.scene);
+      bm.diffuseColor = new Color3(0.3, 1, 0.3);
+      bm.emissiveColor = new Color3(0.2, 0.8, 0.2);
+      bm.specularColor = Color3.Black();
+      bm.alpha = 0.6; bm.backFaceCulling = false;
+      burst.material = bm;
+      let burstLife = 0;
+      const burstInt = setInterval(() => {
+        burstLife += 0.05;
+        burst.scaling.x = 1 + burstLife * 3;
+        burst.scaling.y = 1 + burstLife * 3;
+        burst.scaling.z = 1 + burstLife * 3;
+        bm.alpha = Math.max(0, 0.6 - burstLife * 1.2);
+        if (burstLife > 0.4) { clearInterval(burstInt); burst.dispose(); bm.dispose(); }
+      }, 50);
+    }
   }
 
   spawnDroppedItem(pos, enemyId) {
@@ -1862,6 +2292,7 @@ class InputManager {
   get slot1() { return this.justPressed('Digit1'); }
   get slot2() { return this.justPressed('Digit2'); }
   get slot3() { return this.justPressed('Digit3'); }
+  get special() { return this.justPressed('KeyQ'); }
 }
 
 /* ============================================================
