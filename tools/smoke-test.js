@@ -6,6 +6,23 @@ const path = require('path');
 
 const code = fs.readFileSync(path.join(__dirname, '..', 'src', 'main.js'), 'utf8');
 
+// 0. Vendor files exist
+const vendorDir = path.join(__dirname, '..', 'vendor', 'babylon');
+const babylonFile = path.join(vendorDir, 'babylon.js');
+const guiFile = path.join(vendorDir, 'gui.min.js');
+if (fs.existsSync(babylonFile)) {
+  const kb = (fs.statSync(babylonFile).size / 1024).toFixed(1);
+  console.log(`[OK] vendor/babylon/babylon.js exists (${kb} KB)`);
+} else {
+  console.error('[FAIL] vendor/babylon/babylon.js missing. Run: npm run download');
+}
+if (fs.existsSync(guiFile)) {
+  const kb = (fs.statSync(guiFile).size / 1024).toFixed(1);
+  console.log(`[OK] vendor/babylon/gui.min.js exists (${kb} KB)`);
+} else {
+  console.error('[FAIL] vendor/babylon/gui.min.js missing. Run: npm run download');
+}
+
 // 1. Syntax check
 try {
   new Function(code);

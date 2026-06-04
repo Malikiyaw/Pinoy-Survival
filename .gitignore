@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .DS_Store
-Thumbs.db
-*.lnk
-desktop.ini
+*.log
+serve-out.log
+serve-err.log
+.env
+.env.local
