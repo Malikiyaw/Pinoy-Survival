@@ -1,0 +1,11 @@
+{
+  "name": "pinoy-survival",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Philippine Survival Adventure Game - 3D pixel-art with Babylon.js",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -p 5173"
+  },
+  "note": "No npm install needed. Game uses Babylon.js via CDN. Just open index.html in a browser."
+}
